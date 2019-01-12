@@ -13,11 +13,12 @@ typedef enum GpioCommand {
   TOGGLEPIN,
 } GpioCommand;
 
-typedef struct GpioMsg {
+typedef struct GpioEvt {
+  ServiceEvt serviceEvt;
   GpioCommand command;
   uint8_t gpioNumber;
   uint32_t value;
-} GpioMsg;
+} GpioEvt;
 
 typedef struct Gpio_FunctionTable {
   void (*Gpio_Class)(struct Gpio_Class *);
@@ -25,6 +26,7 @@ typedef struct Gpio_FunctionTable {
 
 typedef struct Gpio_Class {
   Service_Class service;
+  GpioEvt gpioEvt;
   uint32_t bankID;
   uint32_t bankSize;
   uint32_t directionMask;

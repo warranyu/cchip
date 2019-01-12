@@ -10,6 +10,7 @@ typedef void (*State)(Fsm *, Event const *);
 enum {
   SIG_ENTRY,
   SIG_EXIT,
+  SIG_NONE,
 
   MAX_FSM_SIG,
 };
@@ -22,10 +23,10 @@ struct Fsm {
   State state_;
 };
 
-#define fsmCtor_(me_, init_)  ((me_)->state_ = (State)(init_))
-#define fsmInit(me_, e_)      (*(me_)->state_)((me_), (e_))
-#define fsmService(me_, e_)  (*(me_)->state_)((me_), (e_))
+#define FsmCtor_(me_, init_)  ((me_)->state_ = (State)(init_))
+#define FsmInit(me_, e_)      (*(me_)->state_)((me_), (e_))
+#define FsmService(me_, e_)  (*(me_)->state_)((me_), (e_))
 
-void fsmTran_(Fsm *me, State target);
+void FsmTran_(Fsm *me, State target);
 
 #endif

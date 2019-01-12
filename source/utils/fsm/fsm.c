@@ -3,8 +3,8 @@
 static Event const entryEvent = {SIG_ENTRY};
 static Event const exitEvent = {SIG_EXIT};
 
-void fsmTran_(Fsm * me, State target) {
-  fsmService(me, &exitEvent);
+void FsmTran_(Fsm * me, State target) {
+  FsmService(me, &exitEvent);
   me->state_ = target;
-  fsmService(me, &entryEvent);
+  FsmService(me, &entryEvent);
 }
