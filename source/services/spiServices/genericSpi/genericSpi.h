@@ -1,7 +1,7 @@
 #ifndef _GENERICSPI_H_
 
 #include <stdint.h>
-#include "../../gpioServices/genericGpio/genericGpio.h"
+#include "genericGpio.h"
 
 typedef struct genericSpiOutput_t {
 

@@ -2,10 +2,10 @@
 
 #include <stdint.h>
 
-typedef int16_t Signal_t;
-typedef struct EventClass EventClass;
-typedef struct Fsm_t Fsm_t;
-typedef void (*State_t)(Fsm_t *, EventClass const *);
+typedef int16_t Signal;
+typedef struct Event Event;
+typedef struct Fsm Fsm;
+typedef void (*State)(Fsm *, Event const *);
 
 enum {
   SIG_ENTRY,
@@ -14,18 +14,18 @@ enum {
   MAX_FSM_SIG,
 };
 
-struct EventClass {
-  Signal_t signal;
+struct Event {
+  Signal signal;
 };
 
-struct Fsm_t {
-  State_t state_;
+struct Fsm {
+  State state_;
 };
 
-#define fsmCtor_(me_, init_)  ((me_)->state_ = (State_t)(init_))
+#define fsmCtor_(me_, init_)  ((me_)->state_ = (State)(init_))
 #define fsmInit(me_, e_)      (*(me_)->state_)((me_), (e_))
 #define fsmService(me_, e_)  (*(me_)->state_)((me_), (e_))
 
-void fsmTran_(Fsm_t *me, State_t target);
+void fsmTran_(Fsm *me, State target);
 
 #endif

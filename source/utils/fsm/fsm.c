@@ -1,9 +1,9 @@
 #include "fsm.h"
 
-static Event_t const entryEvent = {SIG_ENTRY};
-static Event_t const exitEvent = {SIG_EXIT};
+static Event const entryEvent = {SIG_ENTRY};
+static Event const exitEvent = {SIG_EXIT};
 
-void fsmTran_(Fsm_t * me, State_t target) {
+void fsmTran_(Fsm * me, State target) {
   fsmService(me, &exitEvent);
   me->state_ = target;
   fsmService(me, &entryEvent);
